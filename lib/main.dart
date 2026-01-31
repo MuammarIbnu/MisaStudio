@@ -29,7 +29,7 @@ class HabitlyApp extends StatelessWidget {
           initialRoute: AppRoutes.splash_page,
 
           routes: {
-            AppRoutes.splash_page: (context) => const SplashPage(),
+            AppRoutes.splash_page: (context) =>  SplashPage(),
             AppRoutes.login_page: (context) => const LoginPage(),
           },
         );

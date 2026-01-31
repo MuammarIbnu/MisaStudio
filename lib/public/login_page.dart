@@ -20,8 +20,6 @@ class _LoginPageState extends State<LoginPage> {
       );
       return;
     }
-
-    // Navigator.pushReplacementNamed(context, AppRoutes.home);
   }
 
   @override
@@ -32,6 +30,15 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: isDark
           ? AppColor.darkBackground
           : AppColor.lightBackground,
+
+      appBar: AppBar(
+        leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+        ),
+      ),
 
       body: SafeArea(
         child: Padding(
@@ -46,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                 'assets/images/logo misa studio tanpa.png',
                 width: 260,
               ),
-gio
+
               const SizedBox(height: 4),
 
               /// REGISTER TEXT
@@ -69,7 +76,7 @@ gio
 
               const SizedBox(height: 32),
 
-              /// EMAIL FIELD akuunya
+              /// EMAIL FIELD
               _EmailField(controller: emailController),
 
               const SizedBox(height: 16),

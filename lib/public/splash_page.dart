@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import '../routes.dart';
 import '../theme/app_color.dart';
 import '../theme/app_text.dart';
+import 'package:misastudio/widgets/buttons/role_login_button.dart';
+import 'package:misastudio/controllers/public/splash_controller.dart';
 
 class SplashPage extends StatelessWidget {
-  const SplashPage({super.key});
+  SplashPage({super.key});
+
+  final SplashController controller = SplashController();
 
   @override
   Widget build(BuildContext context) {
@@ -55,46 +59,22 @@ class SplashPage extends StatelessWidget {
                           blurRadius: 14,
                           offset: Offset(4, 4),
                         )
-                      ]
+                      ],
                     ),
                   ),
 
                   const SizedBox(height: 24),
 
+                  /// ===== ROW BUTTONS =====
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 10),
-
-                      /// BUTTON LOGIN USER
+                      /// BUTTON LOGIN ARCHITECTURE
                       Expanded(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(12),
-                          onTap: () {
-                            // Navigator.pushNamed(context,
-                            //   AppRoutes.login_page,
-                            // );
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                height: 56,
-                                decoration: BoxDecoration(
-                                  color: AppColor.primary,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                      Icons.architecture_outlined,
-                                      color: AppColor.orangeaccent,
-                                    ),
-                                  ),
-                              ),
-                              const SizedBox(height: 6),
-                              const Text('Architecture'),
-                            ],
-                          ),
+                        child: RoleLoginButton(
+                          label: 'Architecture',
+                          icon: Icons.architecture,
+                          onPressed: () => controller.login(context, 'architecture'),
                         ),
                       ),
 
@@ -102,33 +82,10 @@ class SplashPage extends StatelessWidget {
 
                       /// BUTTON LOGIN USER
                       Expanded(
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(12),
-                          onTap: () {
-                            Navigator.pushNamed(context,
-                              AppRoutes.login_page,
-                            );
-                          },
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Container(
-                                height: 56,
-                                decoration: BoxDecoration(
-                                  color: AppColor.primary,
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: const Center(
-                                  child: Icon(
-                                    Icons.person,
-                                    color: AppColor.orangeaccent,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              const Text('User'),
-                            ],
-                          ),
+                        child: RoleLoginButton(
+                          label: 'User',
+                          icon: Icons.person,
+                          onPressed: () => controller.login(context, 'user'),
                         ),
                       ),
                     ],
