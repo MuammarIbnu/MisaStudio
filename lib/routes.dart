@@ -1,4 +1,4 @@
 class AppRoutes {
   static const splash_page = '/';
-  static const login_page = 'login';
+  static const user_login_page = 'login';
 }

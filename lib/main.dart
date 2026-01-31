@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:misastudio/public/login_page.dart';
 import 'package:misastudio/public/splash_page.dart';
 import 'package:misastudio/routes.dart';
 import 'package:misastudio/theme/app_theme.dart';
+import 'package:misastudio/roles/user/user_login_page.dart';
 
 ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
@@ -21,7 +21,6 @@ class HabitlyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Misa Studio',
-
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: currentMode,
@@ -29,8 +28,8 @@ class HabitlyApp extends StatelessWidget {
           initialRoute: AppRoutes.splash_page,
 
           routes: {
-            AppRoutes.splash_page: (context) =>  SplashPage(),
-            AppRoutes.login_page: (context) => const LoginPage(),
+            AppRoutes.splash_page: (context) => const SplashPage(),
+            AppRoutes.user_login_page: (context) => const LoginPage(),
           },
         );
       },

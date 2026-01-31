@@ -10,7 +10,7 @@ class AppTheme {
     colorScheme: const ColorScheme.light(
       primary: AppColor.primary,
       background: AppColor.lightBackground,
-      surface: AppColor.orangeaccent,
+      surface: AppColor.lightBackground,
       onSurface: AppColor.white
     ),
 
@@ -22,7 +22,7 @@ class AppTheme {
 
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColor.lightBackground,
-      selectedItemColor: AppColor.orangeaccent,
+      selectedItemColor: AppColor.lightBackground,
       unselectedItemColor: AppColor.grey,
     ),
   );
@@ -34,7 +34,7 @@ class AppTheme {
 
     colorScheme: const ColorScheme.dark(
       background: AppColor.darkBackground,
-        surface: AppColor.orange,
+        surface: AppColor.darkBackground,
         onSurface: AppColor.black
     ),
 
@@ -46,7 +46,7 @@ class AppTheme {
 
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColor.darkBackground,
-      selectedItemColor: Colors.black,
+      selectedItemColor: AppColor.darkBackground,
       unselectedItemColor: Colors.black54,
     ),
   );

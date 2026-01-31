@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import '../routes.dart';
-import '../theme/app_color.dart';
-import '../theme/app_text.dart';
+import 'package:misastudio/routes.dart';
+import 'package:misastudio/theme/app_theme.dart';
+import 'package:misastudio/theme/app_text.dart';
+import 'package:misastudio/theme/app_color.dart';
+import 'package:misastudio/widgets/buttons/continue_button.dart';
+import 'package:misastudio/widgets/buttons/social_button.dart';
+import 'package:misastudio/widgets/input_fields/email.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -33,10 +37,10 @@ class _LoginPageState extends State<LoginPage> {
 
       appBar: AppBar(
         leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.pop(context);
-            },
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
 
@@ -77,12 +81,12 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 32),
 
               /// EMAIL FIELD
-              _EmailField(controller: emailController),
+              EmailInput(controller: emailController),
 
               const SizedBox(height: 16),
 
               /// CONTINUE BUTTON
-              _PrimaryButton(
+              ContinueButton(
                 text: 'Continue',
                 onPressed: _continue,
               ),
@@ -95,13 +99,13 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 16),
 
               /// SOCIAL BUTTONS
-              const _SocialButton(
+              const SocialButton(
                 text: 'Continue with Google',
                 icon: Icons.g_mobiledata,
                 iconSize: 34,
               ),
               const SizedBox(height: 12),
-              const _SocialButton(
+              const SocialButton(
                 text: 'Continue with Apple',
                 icon: Icons.apple,
                 iconSize: 30,
@@ -121,112 +125,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-/// Email Field
-class _EmailField extends StatelessWidget {
-  final TextEditingController controller;
-
-  const _EmailField({required this.controller});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      style: AppText.body(context),
-      decoration: InputDecoration(
-        hintText: 'email@domain.com',
-        hintStyle: TextStyle(
-            color: AppColor.black26,
-            fontFamily: 'Urbanist'
-        ),
-        filled: true,
-        fillColor: AppColor.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      ),
-    );
-  }
-}
-
-///Primary Button
-class _PrimaryButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-
-  const _PrimaryButton({
-    required this.text,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48,
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColor.black,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-        child: Text(
-          text,
-          style: AppText.button(context),
-        ),
-      ),
-    );
-  }
-}
-
-///Social Button
-class _SocialButton extends StatelessWidget {
-  final String text;
-  final IconData icon;
-  final double iconSize;
-
-  const _SocialButton({
-    required this.text,
-    required this.icon,
-    this.iconSize = 24,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48,
-      child: OutlinedButton(
-        onPressed: () {},
-        style: OutlinedButton.styleFrom(
-          backgroundColor: AppColor.white,
-          foregroundColor: AppColor.black,
-          side: BorderSide(
-            color: AppColor.grey.shade300,
-            width: 1,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          overlayColor: AppColor.black.withOpacity(0.05), // ripple
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: iconSize),
-            const SizedBox(width: 12),
-            Text(
-              text,
-              style: AppText.body(context), // aman
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 ///Divider OR
 class _OrDivider extends StatelessWidget {
@@ -243,8 +141,8 @@ class _OrDivider extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8),
           child: Text('or',
-          style: TextStyle(
-            color: AppColor.black)
+              style: TextStyle(
+                  color: AppColor.black)
           ),
         ),
         Expanded(child: Divider(

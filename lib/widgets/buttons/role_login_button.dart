@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:misastudio/theme/app_color.dart';
-import 'package:misastudio/widgets/buttons/role_login_button.dart';
 
 class RoleLoginButton extends StatelessWidget {
   final String label;
@@ -18,6 +17,8 @@ class RoleLoginButton extends StatelessWidget {
   Widget build(BuildContext context){
     return InkWell(
       borderRadius: BorderRadius.circular(12),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
       onTap: onPressed,
       child: Column(
         mainAxisSize: MainAxisSize.min,

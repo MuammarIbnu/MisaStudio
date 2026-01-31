@@ -51,12 +51,12 @@ class AppText {
   }
 
   /// ===== BUTTON =====
-  static TextStyle button(BuildContext context) {
-    return const TextStyle(
+  static TextStyle button(BuildContext context, {required Color color}) {
+    return TextStyle(
       fontFamily: 'Urbanist',
       fontSize: 14,
-      fontWeight: FontWeight.w200,
-      color: Colors.white,
+      fontWeight: FontWeight.w300,
+      color: color,
     );
   }
 }

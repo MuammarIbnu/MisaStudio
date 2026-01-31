@@ -6,13 +6,13 @@ import 'package:misastudio/widgets/buttons/role_login_button.dart';
 import 'package:misastudio/controllers/public/splash_controller.dart';
 
 class SplashPage extends StatelessWidget {
-  SplashPage({super.key});
-
-  final SplashController controller = SplashController();
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    final SplashController controller = SplashController();
 
     return Scaffold(
       backgroundColor: isDark
@@ -55,7 +55,7 @@ class SplashPage extends StatelessWidget {
                       fontSize: 22,
                       shadows: [
                         Shadow(
-                          color: AppColor.orangeaccent.withOpacity(0.9),
+                          color: AppColor.black26.withOpacity(0.6),
                           blurRadius: 14,
                           offset: Offset(4, 4),
                         )
