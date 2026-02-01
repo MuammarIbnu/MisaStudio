@@ -3,6 +3,7 @@ import 'package:misastudio/public/splash_page.dart';
 import 'package:misastudio/routes.dart';
 import 'package:misastudio/theme/app_theme.dart';
 import 'package:misastudio/roles/user/user_login_page.dart';
+import 'package:misastudio/roles/user/user_register_page.dart';
 
 ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
@@ -28,8 +29,14 @@ class HabitlyApp extends StatelessWidget {
           initialRoute: AppRoutes.splash_page,
 
           routes: {
+            /// PUBLIC
             AppRoutes.splash_page: (context) => const SplashPage(),
-            AppRoutes.user_login_page: (context) => const LoginPage(),
+
+            /// USER
+            AppRoutes.user_login_page: (context) => const LoginUserPage(),
+            AppRoutes.user_register_page: (context) => const RegisterUserPage(),
+
+            /// ARCHITECTURE
           },
         );
       },

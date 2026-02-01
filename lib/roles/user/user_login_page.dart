@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:misastudio/routes.dart';
+import 'package:misastudio/controllers/navigasi.dart';
 import 'package:misastudio/theme/app_theme.dart';
 import 'package:misastudio/theme/app_text.dart';
 import 'package:misastudio/theme/app_color.dart';
@@ -7,15 +8,16 @@ import 'package:misastudio/widgets/buttons/continue_button.dart';
 import 'package:misastudio/widgets/buttons/social_button.dart';
 import 'package:misastudio/widgets/input_fields/email.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LoginUserPage extends StatefulWidget {
+  const LoginUserPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LoginUserPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends State<LoginUserPage> {
   final TextEditingController emailController = TextEditingController();
+  final navigasi = Navigasi();
 
   void _continue() {
     if (emailController.text.isEmpty) {
@@ -50,6 +52,21 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Text(
+                'Sign in and continue as a User',
+                style: AppText.body(context).copyWith(
+                  color: Colors.black,
+                  fontSize: 20,
+                  // shadows: [
+                  //   Shadow(
+                  //     color: AppColor.black26.withOpacity(0.6),
+                  //     blurRadius: 14,
+                  //     offset: Offset(2, 2),
+                  //   )
+                  // ],
+                ),
+              ),
+
               const SizedBox(height: 18),
 
               /// LOGO
@@ -70,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 4),
               InkWell(
                 onTap: () {
-                  // Navigator.pushNamed(context, AppRoutes.register);
+                  navigasi.push(context, AppRoutes.user_register_page);
                 },
                 child: Text(
                   'Create one here!',
