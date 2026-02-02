@@ -4,19 +4,22 @@ import 'package:misastudio/theme/app_color.dart';
 ///Divider OR
 class OrDivider extends StatelessWidget {
   final String text;
+  final Color dividerColor;
 
   const OrDivider({
     super.key,
-    this.text = 'or', // default value
+    this.text = 'or',
+    this.dividerColor = AppColor.grey,
+
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           child: Divider(
-            color: AppColor.grey,
+            color: dividerColor,
           ),
         ),
         Padding(
@@ -28,9 +31,9 @@ class OrDivider extends StatelessWidget {
             ),
           ),
         ),
-        const Expanded(
+        Expanded(
           child: Divider(
-            color: AppColor.grey,
+            color: dividerColor,
           ),
         ),
       ],

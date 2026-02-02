@@ -109,6 +109,21 @@ class _LoginPageState extends State<LoginUserPage> {
                 passwordController: passwordState,
               ),
 
+              const SizedBox(height: 4),
+              Align(
+                alignment: Alignment.centerRight,
+                child:
+                  InkWell(
+                    onTap: () {
+                      // navigasi.push(context, AppRoutes.user_register_page);
+                    },
+                    child: Text(
+                      'Forgot Password!',
+                      style: AppText.link(context),
+                    ),
+                  ),
+                ),
+
               const SizedBox(height: 16),
 
               /// CONTINUE BUTTON
@@ -125,16 +140,22 @@ class _LoginPageState extends State<LoginUserPage> {
               const SizedBox(height: 16),
 
               /// SOCIAL BUTTONS
-              const SocialButton(
+              SocialButton(
                 text: 'Continue with Google',
                 icon: Icons.g_mobiledata,
                 iconSize: 34,
+                onPressed: (){
+                },
               ),
+
               const SizedBox(height: 12),
-              const SocialButton(
+
+              SocialButton(
                 text: 'Continue with Apple',
                 icon: Icons.apple,
                 iconSize: 30,
+                onPressed: (){
+                },
               ),
 
               const SizedBox(height: 20),

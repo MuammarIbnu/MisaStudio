@@ -5,12 +5,13 @@ import 'package:misastudio/theme/app_color.dart';
 import 'package:misastudio/theme/app_text.dart';
 import '../../controllers/navigasi.dart';
 import '../../routes.dart';
+import '../../widgets/accesoris/or_divider.dart';
 import '../../widgets/buttons/continue_button.dart';
+import '../../widgets/buttons/social_button.dart';
 import '../../widgets/input_fields/input_field.dart';
 
 class RegisterUserPage extends StatefulWidget {
   const RegisterUserPage({super.key});
-
 
   @override
   State<RegisterUserPage> createState() => _RegisterPageState();
@@ -108,20 +109,6 @@ class _RegisterPageState extends State<RegisterUserPage> {
                         passwordController: passwordState,
                       ),
 
-                      const SizedBox(height: 12),
-
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: InkWell(
-                          onTap: (){}, ///Belum ada Navigasi
-                          child: Text(
-                            'Forgot Password?',
-                            style: AppText.caption(context)
-                                .copyWith(color: AppColor.grey.shade300),
-                          ),
-                        ),
-                      ),
-
                       const SizedBox(height: 24),
 
                       /// REGISTER BUTTON
@@ -132,7 +119,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                         },
                       ),
 
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 12),
 
                       /// LOGIN BUTTON
                       ContinueButton(
@@ -145,54 +132,30 @@ class _RegisterPageState extends State<RegisterUserPage> {
                       const SizedBox(height: 20),
 
                       /// OR
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Divider(color: AppColor.white),
-                          ),
-                          Padding(
-                            padding:
-                            const EdgeInsets.symmetric(horizontal: 8),
-                            child: Text(
-                              'Or',
-                              style: AppText.caption(context)
-                                  .copyWith(color: AppColor.grey),
-                            ),
-                          ),
-                          Expanded(
-                            child: Divider(color: AppColor.white),
-                          ),
-                        ],
+                      const OrDivider(
+                        dividerColor: AppColor.white,
                       ),
 
                       const SizedBox(height: 20),
 
                       /// GOOGLE BUTTON
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton.icon(
-                          onPressed: () {
-                            // Navigator.pushReplacementNamed(context, AppRoutes.home);
-                          },
-                          icon: const Icon(
-                            Icons.g_mobiledata,
-                            size: 28,
-                            color: AppColor.white,
-                          ),
-                          label: Text(
-                            'Sign in with Google',
-                            style: AppText.body(context).copyWith(color: AppColor.white),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            side: const BorderSide(color: AppColor.white),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            alignment: Alignment.center, // ⬅️ ini opsional tapi rapi
-                          ),
-                        ),
-                      )
+                      SocialButton(
+                        text: 'Sign with Google',
+                        icon: Icons.g_mobiledata,
+                        iconSize: 30,
+                        onPressed: (){
+                        },
+                      ),
+
+                      const SizedBox(height: 12),
+
+                      SocialButton(
+                        text: 'Sign with Apple',
+                        icon: Icons.apple,
+                        iconSize: 30,
+                        onPressed: (){
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -204,143 +167,3 @@ class _RegisterPageState extends State<RegisterUserPage> {
     );
   }
 }
-
-/// ===== SMALL WIDGETS =====
-
-class _CountryCode extends StatelessWidget {
-  final BorderRadius radius;
-
-  const _CountryCode({required this.radius});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
-      decoration: BoxDecoration(
-        color: AppColor.white,
-        borderRadius: radius,
-      ),
-      child: const Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text('🇮🇩', style: TextStyle(fontSize: 16)),
-          SizedBox(width: 4),
-          Text('+62', style: TextStyle(fontWeight: FontWeight.bold)),
-        ],
-      ),
-    );
-  }
-}
-
-class _PrimaryButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onPressed;
-  final bool outlined;
-  final FontWeight? fontWeight;
-  final Color? color;
-
-  const _PrimaryButton({
-    required this.text,
-    required this.onPressed,
-    this.outlined = false,
-    this.fontWeight,
-    this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: outlined
-          ? OutlinedButton(
-        onPressed: onPressed,
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: AppColor.white),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          padding:
-          const EdgeInsets.symmetric(vertical: 14),
-        ),
-        child: Text(
-          text,
-          style: AppText.body(context)
-              .copyWith(color: AppColor.white),
-        ),
-      )
-          : ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color ?? AppColor.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          padding:
-          const EdgeInsets.symmetric(vertical: 14),
-        ),
-        child: Text(
-          text,
-          style: AppText.body(context)
-              .copyWith(color: AppColor.white),
-        ),
-      ),
-    );
-  }
-}
-
-
-// class InputField extends StatefulWidget {
-//   final bool obscure;
-//   final bool isPassword;
-//   final TextEditingController? controller;
-//
-//   const InputField({
-//     super.key,
-//     this.obscure = false,
-//     this.isPassword = false,
-//     this.controller,
-//   });
-//
-//   @override
-//   State<InputField> createState() => _InputFieldState();
-// }
-//
-// class _InputFieldState extends State<InputField> {
-//   late bool _obscureText;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _obscureText = widget.obscure;
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextFormField(
-//       controller: widget.controller,
-//       obscureText: widget.isPassword ? _obscureText : false,
-//       validator: (v) => v == null || v.isEmpty ? 'Required' : null,
-//       decoration: InputDecoration(
-//         filled: true,
-//         fillColor: Colors.white, // ganti sesuai AppColor.white
-//         border: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(12),
-//           borderSide: BorderSide.none,
-//         ),
-//         suffixIcon: widget.isPassword
-//             ? IconButton(
-//           icon: Icon(
-//             _obscureText ? Icons.visibility_off : Icons.visibility,
-//             color: Colors.grey,
-//           ),
-//           onPressed: () {
-//             setState(() {
-//               _obscureText = !_obscureText;
-//             });
-//           },
-//         )
-//             : null,
-//       ),
-//     );
-//   }
-// }

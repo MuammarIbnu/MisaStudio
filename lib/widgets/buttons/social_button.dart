@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:misastudio/theme/app_theme.dart';
 import 'package:misastudio/theme/app_text.dart';
 import 'package:misastudio/theme/app_color.dart';
 
@@ -7,11 +6,14 @@ class SocialButton extends StatelessWidget {
   final String text;
   final IconData icon;
   final double iconSize;
+  final VoidCallback onPressed;
 
   const SocialButton({
+    super.key,
     required this.text,
     required this.icon,
     this.iconSize = 24,
+    required this.onPressed,
   });
 
   @override
