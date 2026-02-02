@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:misastudio/theme/app_color.dart';
 import 'package:misastudio/theme/app_text.dart';
 
 ///Term Text
@@ -13,20 +14,23 @@ class TermsText extends StatelessWidget {
         children: const [
           TextSpan(
               text: 'By clicking continue, you agree to our ',
-              style: TextStyle(fontWeight: FontWeight.normal)
+              style: TextStyle(fontWeight: FontWeight.w300)
           ),
           TextSpan(
             text: 'Terms of Service\n',
             style: TextStyle(
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w400,
               color: Colors.black,
             ),
           ),
-          TextSpan(text: 'and '),
+          TextSpan(
+            text: 'and ',
+            style: TextStyle(fontWeight: FontWeight.w300)
+          ),
           TextSpan(
             text: 'Privacy Policy',
             style: TextStyle(
-              fontWeight: FontWeight.normal,
+              fontWeight: FontWeight.w400,
               color: Colors.black,
             ),
           ),

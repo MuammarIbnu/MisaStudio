@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:misastudio/controllers/password.dart';
 import 'package:misastudio/theme/app_color.dart';
 import 'package:misastudio/theme/app_text.dart';
+import '../../controllers/navigasi.dart';
+import '../../routes.dart';
+import '../../widgets/buttons/continue_button.dart';
+import '../../widgets/input_fields/input_field.dart';
 
 class RegisterUserPage extends StatefulWidget {
   const RegisterUserPage({super.key});
+
 
   @override
   State<RegisterUserPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterUserPage> {
+  final navigasi = Navigasi();
   final _formKey = GlobalKey<FormState>();
-  String gender = 'Female';
-
-  final BorderRadius _radius = BorderRadius.circular(12);
-
+  final fullnameController = TextEditingController();
+  final emailController = TextEditingController();
+  final nohpController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmpasswordController = TextEditingController();
+  final passwordState = PasswordController();
+  String gender = 'Male';
+  
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
@@ -27,25 +39,13 @@ class _RegisterPageState extends State<RegisterUserPage> {
           padding: const EdgeInsets.all(12),
           child: Column(
             children: [
-              const SizedBox(height: 2),
-
-              /// ===== LOGO =====
-              Column(
-                // children: [
-                //   Image.asset(
-                //     'assets/images/aebbbec190680b790fb1afab99e36740075f92f4.png',
-                //     width: 200,
-                //   ),
-                // ],
-              ),
-
               const SizedBox(height: 4),
 
               /// ===== FORM CARD =====
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: AppColor.black,
+                  color: AppColor.grey,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Form(
@@ -63,29 +63,50 @@ class _RegisterPageState extends State<RegisterUserPage> {
 
                       const SizedBox(height: 20),
 
-                      _label(context, 'Full Name'),
-                      InputField(),
-
-                      _label(context, 'Email'),
-                      InputField(),
-
-                      _label(context, 'Gender'),
-                      _genderDropdown(),
-
-                      _label(context, 'Mobile'),
-                      Row(
-                        children: [
-                          _CountryCode(radius: _radius),
-                          const SizedBox(width: 8),
-                          Expanded(child: InputField()),
-                        ],
+                      InputField(
+                        controller: fullnameController,
+                        hintText: 'input Full Name',
+                        label: 'Full Name',
                       ),
 
-                      _label(context, 'Password'),
-                      InputField(obscure: true, isPassword: true),
+                      InputField(
+                        controller: emailController,
+                        hintText: 'email@domain.com',
+                        label: 'E-mail',
+                      ),
 
-                      _label(context, 'Confirm Password'),
-                      InputField(obscure: true, isPassword: true),
+                      InputField(
+                        controller: nohpController,
+                        hintText: 'input phone number',
+                        label: 'Phone Number',
+                        keyboardType: TextInputType.phone,
+                        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      ),
+
+                      DropdownInputField(
+                        label: 'Gender',
+                        value: gender,
+                        options: ['Male', 'Female'],
+                        onChanged: (val) {
+                          setState(() {
+                            gender = val!;
+                          });
+                        },
+                      ),
+
+                      InputField(
+                        controller: passwordController,
+                        hintText: 'minumum 12 charecters',
+                        label: 'Password',
+                        passwordController: passwordState,
+                      ),
+
+                      InputField(
+                        controller: confirmpasswordController,
+                        hintText: 'confirm password',
+                        label: 'Confirm Password',
+                        passwordController: passwordState,
+                      ),
 
                       const SizedBox(height: 12),
 
@@ -104,25 +125,20 @@ class _RegisterPageState extends State<RegisterUserPage> {
                       const SizedBox(height: 24),
 
                       /// REGISTER BUTTON
-                      _PrimaryButton(
+                      ContinueButton(
                         text: 'Register',
-                        color: AppColor.primary,
-                        onPressed: () {
-                          // if (_formKey.currentState!.validate()) {
-                          //   Navigator.pushReplacementNamed(
-                          //       context, AppRoutes.home);
-                          // }
+                        onPressed: (){
+                          // Isi navigasi
                         },
                       ),
 
                       const SizedBox(height: 16),
 
                       /// LOGIN BUTTON
-                      _PrimaryButton(
+                      ContinueButton(
                         text: 'Login',
-                        color: const Color(0xFFE2FCD9),
-                        onPressed: () {
-                          // Navigator.pushNamed(context, AppRoutes.login);
+                        onPressed: (){
+                          navigasi.pop(context, AppRoutes.user_login_page);
                         },
                       ),
 
@@ -183,112 +199,6 @@ class _RegisterPageState extends State<RegisterUserPage> {
               ),
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  /// ===== COMPONENTS =====
-
-  Widget _label(BuildContext context, String text) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 12, bottom: 6),
-      child: RichText(
-        text: TextSpan(
-          text: text,
-          style:
-          AppText.caption(context).copyWith(color: AppColor.white),
-          children: const [
-            TextSpan(
-              text: ' *',
-              style: TextStyle(color: Colors.red),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  // Widget _input({bool obscure = false, bool isPassword = false}) {
-  //   return TextFormField(
-  //     obscureText: obscure,
-  //     validator: (v) => v == null || v.isEmpty ? 'Required' : null,
-  //     decoration: InputDecoration(
-  //       filled: true,
-  //       fillColor: AppColor.white,
-  //       border: OutlineInputBorder(
-  //         borderRadius: _radius,
-  //         borderSide: BorderSide.none,
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  Widget _input({
-    bool obscure = false,
-    bool isPassword = false, // default false, biar form lama aman
-  }) {
-    if (isPassword) {
-      // Password field dengan show/hide
-      return StatefulBuilder(
-        builder: (context, setState) {
-          bool _obscureText = obscure;
-          return TextFormField(
-            obscureText: _obscureText,
-            validator: (v) => v == null || v.isEmpty ? 'Required' : null,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColor.white,
-              border: OutlineInputBorder(
-                borderRadius: _radius,
-                borderSide: BorderSide.none,
-              ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: Colors.grey,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              ),
-            ),
-          );
-        },
-      );
-    } else {
-      // Field biasa, tetap kompatibel dengan form lama
-      return TextFormField(
-        obscureText: obscure,
-        validator: (v) => v == null || v.isEmpty ? 'Required' : null,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: AppColor.white,
-          border: OutlineInputBorder(
-            borderRadius: _radius,
-            borderSide: BorderSide.none,
-          ),
-        ),
-      );
-    }
-  }
-
-  Widget _genderDropdown() {
-    return DropdownButtonFormField<String>(
-      value: gender,
-      items: const [
-        DropdownMenuItem(value: 'Female', child: Text('Female')),
-        DropdownMenuItem(value: 'Male', child: Text('Male')),
-      ],
-      onChanged: (v) => setState(() => gender = v!),
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: AppColor.white,
-        border: OutlineInputBorder(
-          borderRadius: _radius,
-          borderSide: BorderSide.none,
         ),
       ),
     );
@@ -379,58 +289,58 @@ class _PrimaryButton extends StatelessWidget {
 }
 
 
-class InputField extends StatefulWidget {
-  final bool obscure;
-  final bool isPassword;
-  final TextEditingController? controller;
-
-  const InputField({
-    super.key,
-    this.obscure = false,
-    this.isPassword = false,
-    this.controller,
-  });
-
-  @override
-  State<InputField> createState() => _InputFieldState();
-}
-
-class _InputFieldState extends State<InputField> {
-  late bool _obscureText;
-
-  @override
-  void initState() {
-    super.initState();
-    _obscureText = widget.obscure;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      obscureText: widget.isPassword ? _obscureText : false,
-      validator: (v) => v == null || v.isEmpty ? 'Required' : null,
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white, // ganti sesuai AppColor.white
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-        suffixIcon: widget.isPassword
-            ? IconButton(
-          icon: Icon(
-            _obscureText ? Icons.visibility_off : Icons.visibility,
-            color: Colors.grey,
-          ),
-          onPressed: () {
-            setState(() {
-              _obscureText = !_obscureText;
-            });
-          },
-        )
-            : null,
-      ),
-    );
-  }
-}
+// class InputField extends StatefulWidget {
+//   final bool obscure;
+//   final bool isPassword;
+//   final TextEditingController? controller;
+//
+//   const InputField({
+//     super.key,
+//     this.obscure = false,
+//     this.isPassword = false,
+//     this.controller,
+//   });
+//
+//   @override
+//   State<InputField> createState() => _InputFieldState();
+// }
+//
+// class _InputFieldState extends State<InputField> {
+//   late bool _obscureText;
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _obscureText = widget.obscure;
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return TextFormField(
+//       controller: widget.controller,
+//       obscureText: widget.isPassword ? _obscureText : false,
+//       validator: (v) => v == null || v.isEmpty ? 'Required' : null,
+//       decoration: InputDecoration(
+//         filled: true,
+//         fillColor: Colors.white, // ganti sesuai AppColor.white
+//         border: OutlineInputBorder(
+//           borderRadius: BorderRadius.circular(12),
+//           borderSide: BorderSide.none,
+//         ),
+//         suffixIcon: widget.isPassword
+//             ? IconButton(
+//           icon: Icon(
+//             _obscureText ? Icons.visibility_off : Icons.visibility,
+//             color: Colors.grey,
+//           ),
+//           onPressed: () {
+//             setState(() {
+//               _obscureText = !_obscureText;
+//             });
+//           },
+//         )
+//             : null,
+//       ),
+//     );
+//   }
+// }

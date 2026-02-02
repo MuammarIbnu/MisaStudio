@@ -6,8 +6,9 @@ import 'package:misastudio/theme/app_color.dart';
 import 'package:misastudio/widgets/accesoris/or_divider.dart';
 import 'package:misastudio/widgets/buttons/continue_button.dart';
 import 'package:misastudio/widgets/buttons/social_button.dart';
-import 'package:misastudio/widgets/input_fields/email.dart';
 import 'package:misastudio/widgets/accesoris/term_text.dart';
+import 'package:misastudio/widgets/input_fields/input_field.dart';
+import 'package:misastudio/controllers/password.dart';
 
 class LoginUserPage extends StatefulWidget {
   const LoginUserPage({super.key});
@@ -17,8 +18,10 @@ class LoginUserPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginUserPage> {
-  final TextEditingController emailController = TextEditingController();
   final navigasi = Navigasi();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final passwordState = PasswordController();
 
   void _continue() {
     if (emailController.text.isEmpty) {
@@ -27,6 +30,7 @@ class _LoginPageState extends State<LoginUserPage> {
       );
       return;
     }
+    // Tambahkan logika lanjut di sini
   }
 
   @override
@@ -34,13 +38,13 @@ class _LoginPageState extends State<LoginUserPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: isDark
-          ? AppColor.darkBackground
-          : AppColor.lightBackground,
+      resizeToAvoidBottomInset: true, // penting agar layout menyesuaikan saat keyboard muncul
+      backgroundColor:
+      isDark ? AppColor.darkBackground : AppColor.lightBackground,
 
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -48,7 +52,7 @@ class _LoginPageState extends State<LoginUserPage> {
       ),
 
       body: SafeArea(
-        child: Padding(
+        child: SingleChildScrollView( // supaya konten bisa digeser saat keyboard muncul
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,15 +65,15 @@ class _LoginPageState extends State<LoginUserPage> {
                 ),
               ),
 
-              const SizedBox(height: 18),
+              const SizedBox(height: 8),
 
               /// LOGO
               Image.asset(
                 'assets/images/logo misa studio tanpa.png',
-                width: 260,
+                width: 200,
               ),
 
-              const SizedBox(height: 4),
+              const SizedBox(height: 1),
 
               /// REGISTER TEXT
               Text(
@@ -89,10 +93,21 @@ class _LoginPageState extends State<LoginUserPage> {
                 ),
               ),
 
-              const SizedBox(height: 32),
+              const SizedBox(height: 16),
 
               /// EMAIL FIELD
-              EmailInput(controller: emailController),
+              InputField(
+                controller: emailController,
+                hintText: 'email@domain.com',
+                label: 'E-mail',
+              ),
+              const SizedBox(height: 4),
+              InputField(
+                controller: passwordController,
+                hintText: 'minumum 12 characters',
+                label: 'Password',
+                passwordController: passwordState,
+              ),
 
               const SizedBox(height: 16),
 

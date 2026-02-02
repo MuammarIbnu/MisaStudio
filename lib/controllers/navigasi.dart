@@ -7,4 +7,7 @@ class Navigasi {
   void replacemen (BuildContext context, String route) {
     Navigator.pushReplacementNamed(context, route);
   }
+  void pop (BuildContext context, String route) {
+    Navigator.popAndPushNamed(context, route);
+  }
 }
