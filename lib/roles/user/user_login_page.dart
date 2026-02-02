@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:misastudio/routes.dart';
 import 'package:misastudio/controllers/navigasi.dart';
-import 'package:misastudio/theme/app_theme.dart';
 import 'package:misastudio/theme/app_text.dart';
 import 'package:misastudio/theme/app_color.dart';
+import 'package:misastudio/widgets/accesoris/or_divider.dart';
 import 'package:misastudio/widgets/buttons/continue_button.dart';
 import 'package:misastudio/widgets/buttons/social_button.dart';
 import 'package:misastudio/widgets/input_fields/email.dart';
+import 'package:misastudio/widgets/accesoris/term_text.dart';
 
 class LoginUserPage extends StatefulWidget {
   const LoginUserPage({super.key});
@@ -57,13 +58,6 @@ class _LoginPageState extends State<LoginUserPage> {
                 style: AppText.body(context).copyWith(
                   color: Colors.black,
                   fontSize: 20,
-                  // shadows: [
-                  //   Shadow(
-                  //     color: AppColor.black26.withOpacity(0.6),
-                  //     blurRadius: 14,
-                  //     offset: Offset(2, 2),
-                  //   )
-                  // ],
                 ),
               ),
 
@@ -111,7 +105,7 @@ class _LoginPageState extends State<LoginUserPage> {
               const SizedBox(height: 24),
 
               /// OR DIVIDER
-              const _OrDivider(),
+              const OrDivider(),
 
               const SizedBox(height: 16),
 
@@ -131,78 +125,13 @@ class _LoginPageState extends State<LoginUserPage> {
               const SizedBox(height: 20),
 
               /// TERMS
-              const _TermsText(),
+              const TermsText(),
 
               const SizedBox(height: 24),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-
-///Divider OR
-class _OrDivider extends StatelessWidget {
-  const _OrDivider();
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: const [
-        Expanded(child: Divider(
-          color: AppColor.grey,
-        )
-        ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: Text('or',
-              style: TextStyle(
-                  color: AppColor.black)
-          ),
-        ),
-        Expanded(child: Divider(
-          color: AppColor.grey,
-        )
-        ),
-      ],
-    );
-  }
-}
-
-///Term Text
-class _TermsText extends StatelessWidget {
-  const _TermsText();
-
-  @override
-  Widget build(BuildContext context) {
-    return Text.rich(
-      TextSpan(
-        style: AppText.caption(context),
-        children: const [
-          TextSpan(
-              text: 'By clicking continue, you agree to our ',
-              style: TextStyle(fontWeight: FontWeight.normal)
-          ),
-          TextSpan(
-            text: 'Terms of Service\n',
-            style: const TextStyle(
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-            ),
-          ),
-          TextSpan(text: 'and '),
-          TextSpan(
-            text: 'Privacy Policy',
-            style: const TextStyle(
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
-            ),
-          ),
-        ],
-      ),
-      textAlign: TextAlign.center,
     );
   }
 }
