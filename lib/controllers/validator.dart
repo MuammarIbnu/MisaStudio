@@ -4,7 +4,16 @@ import 'package:misastudio/theme/app_text.dart';
 
 class LoginValidator {
 
-  static bool validatePhoneNumber(String phoneNumber, BuildContext context) {
+  static bool validateGender(String gender, BuildContext context) {
+    if (gender.isEmpty) {
+      _showError(context, 'Gender must be selected');
+      return false;
+    }
+    return true;
+  }
+
+
+static bool validatePhoneNumber(String phoneNumber, BuildContext context) {
     if (phoneNumber.isEmpty) {
       _showError(context, 'Phone Number cannot be empty');
       return false;
@@ -29,8 +38,8 @@ class LoginValidator {
       _showError(context, 'Password cannot be empty');
       return false;
     }
-    if (password.length < 12) {
-        _showError(context, 'Password must contain 12 characters');
+    if (password.length < 8) {
+        _showError(context, 'Password must contain 8 characters');
       return false;
     }
     return true;
@@ -42,10 +51,6 @@ class LoginValidator {
       _showError(context, 'Confirm password cannot be empty');
       return false;
     }
-    // if (confirmPassword.length < 12) {
-    //   _showError(context, 'Password must contain 12 characters');
-    //   return false;
-    // }
     if (password != confirmPassword) {
       _showError(context, 'Passwords do not match');
       return false;

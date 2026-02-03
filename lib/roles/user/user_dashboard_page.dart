@@ -19,7 +19,7 @@ class _DashboardUserPage extends State<DashboardUserPage> {
         .of(context)
         .brightness == Brightness.dark;
     return Scaffold(
-        resizeToAvoidBottomInset: true, // penting agar layout menyesuaikan saat keyboard muncul
+        resizeToAvoidBottomInset: true,
         backgroundColor:
         isDark ? AppColor.darkBackground : AppColor.lightBackground);
   }

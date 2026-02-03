@@ -91,8 +91,10 @@ class InputField extends StatelessWidget {
 class DropdownInputField extends StatelessWidget {
   final String? label;
   final String? value;
+  final String? hintText;
   final List<String> options;
   final ValueChanged<String?> onChanged;
+  // final dynamic hintText;
 
   const DropdownInputField({
     super.key,
@@ -100,6 +102,7 @@ class DropdownInputField extends StatelessWidget {
     required this.value,
     required this.options,
     required this.onChanged,
+    this.hintText,
   });
 
   @override
@@ -113,12 +116,11 @@ class DropdownInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
           borderSide: BorderSide.none,
         ),
-      ),
-      hint: Text(
-        "Select $label",
-        style: const TextStyle(
-          color: AppColor.black26,
+        hintText: hintText,
+        hintStyle: const TextStyle(
+          color: AppColor.grey,
           fontFamily: 'Urbanist',
+          fontSize: 14,
         ),
       ),
       style: const TextStyle(

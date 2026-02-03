@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginUserPage> {
               const SizedBox(height: 4),
               InputField(
                 controller: passwordController,
-                hintText: 'minumum 12 characters',
+                hintText: 'minumum 8 characters',
                 label: 'Password',
                 passwordController: passwordState,
               ),

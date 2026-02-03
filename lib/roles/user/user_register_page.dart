@@ -27,7 +27,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
   final passwordState = PasswordController();
-  String gender = 'Male';
+  String gender = '';
   
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
 
                       InputField(
                         controller: fullnameController,
-                        hintText: 'input Full Name',
+                        hintText: 'Input Full Name',
                         label: 'Full Name',
                       ),
 
@@ -79,7 +79,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
 
                       InputField(
                         controller: nohpController,
-                        hintText: 'input phone number',
+                        hintText: 'Input Phone Number',
                         label: 'Phone Number',
                         keyboardType: TextInputType.phone,
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -87,25 +87,26 @@ class _RegisterPageState extends State<RegisterUserPage> {
 
                       DropdownInputField(
                         label: 'Gender',
-                        value: gender,
+                        value: gender.isEmpty ? null : gender,
                         options: ['Male', 'Female'],
+                        hintText: 'Select Gender',
                         onChanged: (val) {
                           setState(() {
-                            gender = val!;
+                            gender = val ?? '';
                           });
                         },
                       ),
 
                       InputField(
                         controller: passwordController,
-                        hintText: 'minumum 12 charecters',
+                        hintText: 'Minumum 8 Charecters',
                         label: 'Password',
                         passwordController: passwordState,
                       ),
 
                       InputField(
                         controller: confirmpasswordController,
-                        hintText: 'confirm password',
+                        hintText: 'Confirm Password',
                         label: 'Confirm Password',
                         passwordController: passwordState,
                       ),
@@ -125,6 +126,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                               LoginValidator.validateFullName(fullName, context) &&
                               LoginValidator.validateEmail(email, context) &&
                               LoginValidator.validatePhoneNumber(phoneNumber, context) &&
+                              LoginValidator.validateGender(gender, context) &&
                               LoginValidator.validatePassword(password, context) &&
                               LoginValidator.validateConfirmPassword(password, confirmPassword, context);
 
