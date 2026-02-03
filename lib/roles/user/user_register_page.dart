@@ -4,6 +4,7 @@ import 'package:misastudio/controllers/password.dart';
 import 'package:misastudio/theme/app_color.dart';
 import 'package:misastudio/theme/app_text.dart';
 import '../../controllers/navigasi.dart';
+import '../../controllers/validator.dart';
 import '../../routes.dart';
 import '../../widgets/accesoris/or_divider.dart';
 import '../../widgets/buttons/continue_button.dart';
@@ -115,7 +116,21 @@ class _RegisterPageState extends State<RegisterUserPage> {
                       ContinueButton(
                         text: 'Register',
                         onPressed: (){
-                          // Isi navigasi
+                          final fullName = fullnameController.text.trim();
+                          final email = emailController.text.trim();
+                          final password = passwordController.text.trim();
+                          final phoneNumber = nohpController.text.trim();
+                          final confirmPassword = confirmpasswordController.text.trim();
+                          final isValid =
+                              LoginValidator.validateFullName(fullName, context) &&
+                              LoginValidator.validateEmail(email, context) &&
+                              LoginValidator.validatePhoneNumber(phoneNumber, context) &&
+                              LoginValidator.validatePassword(password, context) &&
+                              LoginValidator.validateConfirmPassword(password, confirmPassword, context);
+
+                          if (isValid) {
+                            navigasi.push(context, AppRoutes.userDashboardPage);
+                          }
                         },
                       ),
 
@@ -125,7 +140,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                       ContinueButton(
                         text: 'Login',
                         onPressed: (){
-                          navigasi.pop(context, AppRoutes.user_login_page);
+                          navigasi.pop(context, AppRoutes.userLoginPage);
                         },
                       ),
 

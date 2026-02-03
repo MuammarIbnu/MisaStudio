@@ -5,9 +5,9 @@ class SplashController {
   void login(BuildContext context, String role) {
 
     if (role == 'user') {
-      Navigator.pushNamed(context, AppRoutes.user_login_page);
+      Navigator.pushNamed(context, AppRoutes.userLoginPage);
     } else if (role == 'architecture') {
-      Navigator.pushNamed(context, AppRoutes.user_login_page);
+      Navigator.pushNamed(context, AppRoutes.userLoginPage);
     }
   }
 }

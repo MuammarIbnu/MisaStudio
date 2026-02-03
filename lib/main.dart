@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:misastudio/public/splash_page.dart';
+import 'package:misastudio/roles/user/user_dashboard_page.dart';
 import 'package:misastudio/routes.dart';
 import 'package:misastudio/theme/app_theme.dart';
 import 'package:misastudio/roles/user/user_login_page.dart';
@@ -9,11 +10,11 @@ import 'package:sizer/sizer.dart';
 ValueNotifier<ThemeMode> themeNotifier = ValueNotifier(ThemeMode.light);
 
 void main() {
-  runApp(const HabitlyApp());
+  runApp(const MyApp());
 }
 
-class HabitlyApp extends StatelessWidget {
-  const HabitlyApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +30,16 @@ class HabitlyApp extends StatelessWidget {
               darkTheme: AppTheme.darkTheme,
               themeMode: currentMode,
 
-              initialRoute: AppRoutes.splash_page,
+              initialRoute: AppRoutes.splashPage,
 
               routes: {
                 /// PUBLIC
-                AppRoutes.splash_page: (context) => const SplashPage(),
+                AppRoutes.splashPage: (context) => const SplashPage(),
 
                 /// USER
-                AppRoutes.user_login_page: (context) => const LoginUserPage(),
-                AppRoutes.user_register_page: (
-                    context) => const RegisterUserPage(),
-
+                AppRoutes.userLoginPage: (context) => const LoginUserPage(),
+                AppRoutes.userRegisterPage: (context) => const RegisterUserPage(),
+                AppRoutes.userDashboardPage: (context) => const DashboardUserPage(),
                 /// ARCHITECTURE
               },
             );

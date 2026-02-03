@@ -105,7 +105,7 @@ class DropdownInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final field = DropdownButtonFormField<String>(
-      value: value,
+      initialValue: value,
       decoration: InputDecoration(
         filled: true,
         fillColor: AppColor.white,

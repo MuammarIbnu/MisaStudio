@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:misastudio/theme/app_theme.dart';
 import 'package:misastudio/theme/app_text.dart';
 import 'package:misastudio/theme/app_color.dart';
 
@@ -7,7 +6,7 @@ class ContinueButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const ContinueButton({
+  const ContinueButton({super.key,
     required this.text,
     required this.onPressed,
   });
@@ -27,7 +26,7 @@ class ContinueButton extends StatelessWidget {
         ),
         child: Text(
           text,
-          style: AppText.button(context, color: Colors.white),
+          style: AppText.button(context, color: AppColor.white),
         ),
       ),
     );

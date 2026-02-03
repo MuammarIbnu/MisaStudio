@@ -1,10 +1,11 @@
 class AppRoutes {
   /// PUBLIC
-  static const splash_page = '/';
+  static const splashPage = '/';
 
   /// USER
-  static const user_login_page = 'login1';
+  static const userLoginPage = 'login1';
+  static const userDashboardPage = 'Dashboard1';
 
   /// ARCHITECTURE
-  static const user_register_page = 'register1';
+  static const userRegisterPage = 'register1';
 }

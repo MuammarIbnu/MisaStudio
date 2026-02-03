@@ -5,7 +5,7 @@ class AppText {
 
   /// ===== COLORS =====
   static Color textColor(BuildContext context) =>
-      Theme.of(context).colorScheme.onBackground;
+      Theme.of(context).colorScheme.onSurface;
 
   static Color mutedText(BuildContext context) =>
       Theme.of(context).colorScheme.onSurface.withOpacity(0.6);

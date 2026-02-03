@@ -9,6 +9,7 @@ import 'package:misastudio/widgets/buttons/social_button.dart';
 import 'package:misastudio/widgets/accesoris/term_text.dart';
 import 'package:misastudio/widgets/input_fields/input_field.dart';
 import 'package:misastudio/controllers/password.dart';
+import 'package:misastudio/controllers/validator.dart';
 
 class LoginUserPage extends StatefulWidget {
   const LoginUserPage({super.key});
@@ -22,16 +23,6 @@ class _LoginPageState extends State<LoginUserPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordState = PasswordController();
-
-  void _continue() {
-    if (emailController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Email tidak boleh kosong')),
-      );
-      return;
-    }
-    // Tambahkan logika lanjut di sini
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +76,7 @@ class _LoginPageState extends State<LoginUserPage> {
               const SizedBox(height: 4),
               InkWell(
                 onTap: () {
-                  navigasi.push(context, AppRoutes.user_register_page);
+                  navigasi.push(context, AppRoutes.userRegisterPage);
                 },
                 child: Text(
                   'Create one here!',
@@ -109,13 +100,14 @@ class _LoginPageState extends State<LoginUserPage> {
                 passwordController: passwordState,
               ),
 
+              /// FORGOT PASSWORD
               const SizedBox(height: 4),
               Align(
                 alignment: Alignment.centerRight,
                 child:
                   InkWell(
                     onTap: () {
-                      // navigasi.push(context, AppRoutes.user_register_page);
+                      // navigasi.push(context, AppRoutes.userDashboardPage);
                     },
                     child: Text(
                       'Forgot Password!',
@@ -129,7 +121,16 @@ class _LoginPageState extends State<LoginUserPage> {
               /// CONTINUE BUTTON
               ContinueButton(
                 text: 'Continue',
-                onPressed: _continue,
+                onPressed:() {
+                  final email = emailController.text.trim();
+                  final password = passwordController.text.trim();
+                  final isValid = LoginValidator.validateEmail(email, context) && LoginValidator.validatePassword(password, context);
+
+                  if (isValid) {
+                    navigasi.push(context, AppRoutes.userDashboardPage);
+                  }
+                }
+
               ),
 
               const SizedBox(height: 24),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../routes.dart';
 import '../theme/app_color.dart';
 import '../theme/app_text.dart';
 import 'package:misastudio/widgets/buttons/role_login_button.dart';
@@ -55,7 +54,7 @@ class SplashPage extends StatelessWidget {
                       fontSize: 22,
                       shadows: [
                         Shadow(
-                          color: AppColor.black26.withOpacity(0.6),
+                          color: AppColor.black26,
                           blurRadius: 14,
                           offset: Offset(4, 4),
                         )

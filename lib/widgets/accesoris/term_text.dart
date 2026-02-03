@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:misastudio/theme/app_color.dart';
 import 'package:misastudio/theme/app_text.dart';
 
 ///Term Text
