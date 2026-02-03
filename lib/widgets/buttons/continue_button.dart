@@ -20,9 +20,11 @@ class ContinueButton extends StatelessWidget {
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.black,
+          foregroundColor: AppColor.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
+          overlayColor: AppColor.white.withOpacity(0.1),
         ),
         child: Text(
           text,
