@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginUserPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context);
+            navigasi.pop(context, AppRoutes.splashPage);
           },
         ),
       ),
@@ -94,6 +94,7 @@ class _LoginPageState extends State<LoginUserPage> {
                 controller: emailController,
                 hintText: 'email@domain.com',
                 label: 'E-mail',
+                keyboardType: TextInputType.emailAddress,
               ),
 
               const SizedBox(height: 4),
@@ -133,10 +134,10 @@ class _LoginPageState extends State<LoginUserPage> {
                   final isValid = LoginValidator.validateEmail(email, context) && LoginValidator.validatePassword(password, context);
 
                   if (isValid) {
+                    // => PAKAI PUSH UNTUK SEMENTARA
                     navigasi.push(context, AppRoutes.userDashboardPage);
                   }
                 }
-
               ),
 
               const SizedBox(height: 24),

@@ -3,9 +3,9 @@ class AppRoutes {
   static const splashPage = '/';
 
   /// USER
-  static const userLoginPage = 'login1';
-  static const userDashboardPage = 'Dashboard1';
+  static const userLoginPage = '/loginuser';
+  static const userDashboardPage = '/dashboarduser';
 
   /// ARCHITECTURE
-  static const userRegisterPage = 'register1';
+  static const userRegisterPage = '/registeruser';
 }

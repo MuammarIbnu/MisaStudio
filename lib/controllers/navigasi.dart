@@ -14,4 +14,10 @@ class Navigasi {
   void pop (BuildContext context, String route) {
     Navigator.popAndPushNamed(context, route);
   }
+  /// COTROLLER NAVIGASI REMOVE UNTIL
+  void removeUntil (BuildContext context, String route) {
+    Navigator.pushNamedAndRemoveUntil(
+      context, route, (Route<dynamic> r) => false, // => HAPUS SEMUA PAGE SEBELUMNYA
+    );
+  }
 }

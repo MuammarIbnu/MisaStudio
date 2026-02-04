@@ -79,6 +79,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                         controller: emailController,
                         hintText: 'email@domain.com',
                         label: 'E-mail',
+                        keyboardType: TextInputType.emailAddress,
                       ),
 
                       /// INPUTFIELD PHONE NUMBER
@@ -139,7 +140,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                               LoginValidator.validateConfirmPassword(password, confirmPassword, context);
 
                           if (isValid) {
-                            navigasi.push(context, AppRoutes.userDashboardPage);
+                            navigasi.removeUntil(context, AppRoutes.userDashboardPage);
                           }
                         },
                       ),
