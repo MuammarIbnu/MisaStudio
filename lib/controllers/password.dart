@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// COTROLLER OBSECURE PASSWORD
 class PasswordController extends ChangeNotifier {
   bool _obscure = true;
 

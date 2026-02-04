@@ -24,7 +24,7 @@ class ContinueButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          overlayColor: AppColor.white.withOpacity(0.1),
+          overlayColor: AppColor.white.withOpacity(0.1), // => EFEK DI PRESS
         ),
         child: Text(
           text,

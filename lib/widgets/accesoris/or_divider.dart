@@ -25,7 +25,7 @@ class OrDivider extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Text(
-            text, // gunakan properti text
+            text, // => MENGGUNAKAN PROPERTI TEXT
             style: const TextStyle(
               color: AppColor.black,
             ),

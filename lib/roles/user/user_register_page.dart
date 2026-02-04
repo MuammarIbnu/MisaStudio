@@ -55,6 +55,8 @@ class _RegisterPageState extends State<RegisterUserPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+
+                      /// TEXT
                       Center(
                         child: Text(
                           'Account User Register',
@@ -65,18 +67,21 @@ class _RegisterPageState extends State<RegisterUserPage> {
 
                       const SizedBox(height: 20),
 
+                      /// INPUTFIELD FULL NAME
                       InputField(
                         controller: fullnameController,
                         hintText: 'Input Full Name',
                         label: 'Full Name',
                       ),
 
+                      /// INPUTFIELD EMAIL
                       InputField(
                         controller: emailController,
                         hintText: 'email@domain.com',
                         label: 'E-mail',
                       ),
 
+                      /// INPUTFIELD PHONE NUMBER
                       InputField(
                         controller: nohpController,
                         hintText: 'Input Phone Number',
@@ -85,6 +90,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       ),
 
+                      /// INPUTFIELD GENDER
                       DropdownInputField(
                         label: 'Gender',
                         value: gender.isEmpty ? null : gender,
@@ -97,6 +103,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                         },
                       ),
 
+                      /// INPUTFIELD PASSWORD
                       InputField(
                         controller: passwordController,
                         hintText: 'Minumum 8 Charecters',
@@ -104,6 +111,7 @@ class _RegisterPageState extends State<RegisterUserPage> {
                         passwordController: passwordState,
                       ),
 
+                      /// INPUTFIELD CONFIRM PASSWORD
                       InputField(
                         controller: confirmpasswordController,
                         hintText: 'Confirm Password',

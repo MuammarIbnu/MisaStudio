@@ -29,9 +29,8 @@ class _LoginPageState extends State<LoginUserPage> {
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return Scaffold(
-      resizeToAvoidBottomInset: true, // penting agar layout menyesuaikan saat keyboard muncul
-      backgroundColor:
-      isDark ? AppColor.darkBackground : AppColor.lightBackground,
+      resizeToAvoidBottomInset: true, // => SCAFHOLD TIDAK ERROR SAAT KEYBOARD MUNCUL
+      backgroundColor: isDark ? AppColor.darkBackground : AppColor.lightBackground,
 
       appBar: AppBar(
         leading: IconButton(
@@ -43,13 +42,14 @@ class _LoginPageState extends State<LoginUserPage> {
       ),
 
       body: SafeArea(
-        child: SingleChildScrollView( // supaya konten bisa digeser saat keyboard muncul
+        child: SingleChildScrollView( // => BISA DIGESER SAAT KEYBOARD MUNCUL
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Sign in and continue as a User',
+
+              /// TEXT
+              Text('Sign in and continue as a User',
                 style: AppText.body(context).copyWith(
                   color: Colors.black,
                   fontSize: 20,
@@ -66,14 +66,17 @@ class _LoginPageState extends State<LoginUserPage> {
 
               const SizedBox(height: 1),
 
-              /// REGISTER TEXT
+              /// TEXT
               Text(
                 "Didn't have account ?",
                 style: AppText.caption(context).copyWith(
                   color: AppColor.black,
                 ),
               ),
+
               const SizedBox(height: 4),
+
+              /// CREATE ACCOUNT (REGISTER)
               InkWell(
                 onTap: () {
                   navigasi.push(context, AppRoutes.userRegisterPage);
@@ -92,7 +95,10 @@ class _LoginPageState extends State<LoginUserPage> {
                 hintText: 'email@domain.com',
                 label: 'E-mail',
               ),
+
               const SizedBox(height: 4),
+
+              /// PASSWORD FIELD
               InputField(
                 controller: passwordController,
                 hintText: 'minumum 8 characters',

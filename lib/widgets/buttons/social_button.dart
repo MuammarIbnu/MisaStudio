@@ -33,7 +33,7 @@ class SocialButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          overlayColor: AppColor.black.withOpacity(0.05),
+          overlayColor: AppColor.black.withOpacity(0.05), // => EFEK DI PRESS
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

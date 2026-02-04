@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:misastudio/routes.dart';
 
+///CONTROLLER NAVIGASI SPLASH
 class SplashController {
   void login(BuildContext context, String role) {
 

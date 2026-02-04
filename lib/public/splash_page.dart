@@ -32,7 +32,7 @@ class SplashPage extends StatelessWidget {
             ),
           ),
 
-          /// ===== BOTTOM CARD =====
+          /// ===== MOTTO CARD (FIND YOUR DREAM HOUSE) =====
           Expanded(
             flex: 6,
             child: Container(
@@ -64,7 +64,7 @@ class SplashPage extends StatelessWidget {
 
                   const SizedBox(height: 24),
 
-                  /// ===== ROW BUTTONS =====
+                  /// ===== BUTTON ROLES =====
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
